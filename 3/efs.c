@@ -6,13 +6,13 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:46:44 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 22:35:13 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:19:10 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		start_process(t_philo *philo)
+int	start_process(t_philo *philo)
 {
 	pthread_t	thread;
 	int			count_eat;

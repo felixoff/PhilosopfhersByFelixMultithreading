@@ -6,7 +6,7 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:16:08 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 22:29:36 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:52:36 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 int	g_flag;
 
-typedef	struct		s_philo
+typedef struct s_philo
 {
 	int					index;
 	int					count_eat;
@@ -38,7 +38,7 @@ typedef	struct		s_philo
 	struct s_init_data	*init_data;
 }					t_philo;
 
-typedef struct		s_init_data
+typedef struct s_init_data
 {
 	int		kol;
 	int		sleep;
@@ -47,7 +47,7 @@ typedef struct		s_init_data
 	int		count_eat;
 	int		time;
 	int		finish;
-	t_philo *philo;
+	t_philo	*philo;
 	sem_t	*fork;
 	sem_t	*sem;
 	sem_t	*vivod;
@@ -70,6 +70,7 @@ void				take_fork_on(t_philo *philo);
 void				take_fork_off(t_philo *philo);
 void				eat(t_philo *philo);
 void				ft_sleep(t_philo *philo);
+void				*enderf(void *args);
 int					timer(void);
 int					init_process (t_init_data *init_data);
 int					count_eat(void *args);

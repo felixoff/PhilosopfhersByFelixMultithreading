@@ -6,7 +6,7 @@
 #    By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/02 16:19:43 by sjennett          #+#    #+#              #
-#    Updated: 2021/03/02 16:56:43 by sjennett         ###   ########.fr        #
+#    Updated: 2021/04/20 23:29:45 by sjennett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I.
 LIBS			= -lpthread
 
-NAME			= philo_one
+NAME			= philo_three
 
 all:			$(NAME)
 

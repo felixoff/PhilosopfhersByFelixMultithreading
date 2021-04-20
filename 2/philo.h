@@ -6,7 +6,7 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:16:08 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 22:28:34 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:15:49 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <fcntl.h>
 
-typedef	struct		s_philo
+typedef struct s_philo
 {
 	int					index;
 	int					count_eat;
@@ -33,7 +33,7 @@ typedef	struct		s_philo
 	struct s_init_data	*init_data;
 }					t_philo;
 
-typedef struct		s_init_data
+typedef struct s_init_data
 {
 	int				kol;
 	int				sleep;

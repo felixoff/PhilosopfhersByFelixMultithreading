@@ -6,18 +6,19 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:26:15 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 22:36:14 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:26:12 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		init_philo(t_init_data *init_data)
+int	init_philo(t_init_data *init_data)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	if (!(init_data->philo = malloc(sizeof(t_init_data) * init_data->kol)))
+	init_data->philo = malloc(sizeof(t_init_data) * init_data->kol);
+	if (!(init_data->philo))
 		return (2);
 	while (++i < init_data->kol)
 	{
@@ -37,7 +38,7 @@ int		init_philo(t_init_data *init_data)
 	return (0);
 }
 
-int		timer(void)
+int	timer(void)
 {
 	int				i;
 	struct timeval	time;
@@ -50,12 +51,12 @@ int		timer(void)
 
 void	*dead_philo(void *args)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
-	philo = (t_philo*)args;
+	philo = (t_philo *)args;
 	while (philo->is_death)
 	{
-		if (philo->init_data->finish == 1 &&
+		if (philo->init_data->finish == 1 && \
 		timer() - philo->time > philo->init_data->die)
 		{
 			philo->is_death = 0;

@@ -6,15 +6,15 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 18:47:31 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 18:47:40 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:53:02 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		clean_all(t_init_data *init_data)
+int	clean_all(t_init_data *init_data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (init_data)
@@ -38,7 +38,7 @@ int		clean_all(t_init_data *init_data)
 	return (1);
 }
 
-int		error(t_init_data *init_data, int i)
+int	error(t_init_data *init_data, int i)
 {
 	if (i == 2)
 	{
@@ -70,7 +70,7 @@ char	*output(int i)
 
 void	show(t_philo *philo, int i)
 {
-	char *tmp;
+	char	*tmp;
 
 	pthread_mutex_lock(&philo->init_data->mutex);
 	if (!philo->init_data->finish)
@@ -92,4 +92,30 @@ void	show(t_philo *philo, int i)
 		}
 	}
 	pthread_mutex_unlock(&philo->init_data->mutex);
+}
+
+int	init_thread(t_init_data *init_data)
+{
+	int			i;
+	pthread_t	thread;
+
+	init_data->time = timer();
+	i = 0;
+	while (i < init_data->kol)
+	{
+		init_data->philo[i].time = timer();
+		if (pthread_create(&thread, NULL, \
+		start_process, (void *)&init_data->philo[i]))
+			return (1);
+		pthread_detach(thread);
+		if (pthread_create(&init_data->philo[i].thread, NULL, \
+		&dead_philo, (void *)&init_data->philo[i]))
+			return (1);
+		usleep(1000);
+		i++;
+	}
+	i = 0;
+	while (i < init_data->kol)
+		pthread_join(init_data->philo[i++].thread, NULL);
+	return (0);
 }

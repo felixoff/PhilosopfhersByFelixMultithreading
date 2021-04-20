@@ -6,15 +6,15 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:55:07 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 17:17:31 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:51:25 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		clean_all(t_init_data *init_data)
+int	clean_all(t_init_data *init_data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (init_data)
@@ -39,7 +39,7 @@ int		clean_all(t_init_data *init_data)
 	return (1);
 }
 
-int		error(t_init_data *init_data, int i)
+int	error(t_init_data *init_data, int i)
 {
 	if (i == 2)
 	{
@@ -71,7 +71,7 @@ char	*output(int i)
 
 void	show(t_philo *philo, int i)
 {
-	char *tmp;
+	char	*tmp;
 
 	sem_wait(philo->init_data->sem);
 	if (!philo->init_data->finish)
@@ -93,4 +93,26 @@ void	show(t_philo *philo, int i)
 		}
 	}
 	sem_post(philo->init_data->sem);
+}
+
+int	init_philo(t_init_data *init_data)
+{
+	int	i;
+
+	i = -1;
+	init_data->philo = malloc(sizeof(t_init_data) * init_data->kol);
+	if (!(init_data->philo))
+		return (2);
+	while (++i < init_data->kol)
+	{
+		init_data->philo[i].index = i;
+		init_data->philo[i].count_eat = 0;
+		init_data->philo[i].init_data = init_data;
+		init_sem(&init_data->philo[i], i);
+	}
+	sem_unlink("fork");
+	sem_unlink("sem");
+	init_data->fork = sem_open("fork", O_CREAT, 0644, init_data->kol);
+	init_data->sem = sem_open("sem", O_CREAT, 0644, 1);
+	return (0);
 }

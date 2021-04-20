@@ -6,7 +6,7 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:55:07 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 22:36:31 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/21 00:00:18 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clean_all(t_init_data *init_data, int i)
 	sem_unlink("vivod");
 }
 
-int		error(t_init_data *init_data, int i)
+int	error(t_init_data *init_data, int i)
 {
 	if (i == 2)
 	{
@@ -66,7 +66,7 @@ char	*output(int i)
 
 void	show(t_philo *philo, int i)
 {
-	char *tmp;
+	char	*tmp;
 
 	sem_wait(philo->init_data->vivod);
 	if (g_flag != -1)
@@ -88,4 +88,14 @@ void	show(t_philo *philo, int i)
 		}
 	}
 	sem_post(philo->init_data->vivod);
+}
+
+void	*enderf(void *args)
+{
+	t_init_data	*init_data;
+
+	init_data = (t_init_data *)args;
+	sem_wait(init_data->fin);
+	init_data->finish = 0;
+	return (NULL);
 }

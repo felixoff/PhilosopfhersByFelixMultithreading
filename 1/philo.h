@@ -6,7 +6,7 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:16:08 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 16:19:25 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:54:05 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <semaphore.h>
 
-typedef	struct		s_philo
+typedef struct s_philo
 {
 	int					index;
 	int					count_eat;
@@ -32,7 +32,7 @@ typedef	struct		s_philo
 	struct s_init_data	*init_data;
 }					t_philo;
 
-typedef struct		s_init_data
+typedef struct s_init_data
 {
 	int		kol;
 	int		sleep;
@@ -42,7 +42,7 @@ typedef struct		s_init_data
 	int		time;
 	int		finish;
 	int		add_fat_philo;
-	t_philo *philo;
+	t_philo	*philo;
 	sem_t	*fork;
 	sem_t	*sem;
 }					t_init_data;
@@ -51,6 +51,7 @@ int					clean_all(t_init_data *init_data);
 int					error(t_init_data *init_data, int i);
 void				ft_putchar_fd(int fd, char c);
 void				ft_putnbr_fd(int fd, int number);
+int					init_sem(t_philo *philo, int i);
 char				*ft_name(char *str, int j);
 int					ft_strlen(char *str);
 int					atoi2(char *str);

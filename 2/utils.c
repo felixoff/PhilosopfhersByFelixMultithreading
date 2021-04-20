@@ -6,7 +6,7 @@
 /*   By: sjennett <sjennett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:51:25 by sjennett          #+#    #+#             */
-/*   Updated: 2021/03/02 16:51:26 by sjennett         ###   ########.fr       */
+/*   Updated: 2021/04/20 23:16:25 by sjennett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putchar_fd(int fd, char c)
 
 void	ft_putnbr_fd(int fd, int number)
 {
-	long nb;
+	long	nb;
 
 	nb = number;
 	if (nb < 0)
@@ -38,7 +38,7 @@ void	ft_putnbr_fd(int fd, int number)
 		ft_putchar_fd(fd, (nb % 10) + 48);
 }
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -48,11 +48,11 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		atoi2(char *str)
+int	atoi2(char *str)
 {
-	int i;
-	int minus;
-	int result;
+	int	i;
+	int	minus;
+	int	result;
 
 	i = 0;
 	minus = 1;
@@ -70,7 +70,7 @@ int		atoi2(char *str)
 	return (result * minus);
 }
 
-int		ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
 
